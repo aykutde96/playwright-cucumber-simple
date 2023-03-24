@@ -6,7 +6,7 @@ let page: Page;
 Given('User navigates to the application', async function () {
     browser = await chromium.launch({ headless: true });
     page = await browser.newPage();
-    await page.goto("https://bookcart.azurewebsites.net")
+    await page.goto("https://bookcart.azurewebsites.net");
 });
 
 Given('User click on the login link', async function () {
