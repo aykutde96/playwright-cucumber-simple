@@ -18,8 +18,11 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
   test2:
+    steps:
     - name: Run Playwright tests
       run: npm test
+  test3:
+    steps:
     - uses: actions/upload-artifact@v3
       if: always()
       with:
