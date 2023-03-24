@@ -18,14 +18,14 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
   test2:
-    needs: test
     runs-on: ubuntu-latest
+    needs: test
     steps:
     - name: Run Playwright tests
       run: npm test
   test3:
-    needs: test2
     runs-on: ubuntu-latest
+    needs: test2
     steps:
     - uses: actions/upload-artifact@v3
       if: always()
