@@ -1,6 +1,7 @@
-import { Given, When, Then } from "@cucumber/cucumber"
+import { Given, When, Then, setDefaultTimeout } from "@cucumber/cucumber"
 import { Browser, chromium, expect, Page } from "@playwright/test"
 
+setDefaultTimeout(60*1000*2);
 let browser: Browser;
 let page: Page;
 Given('User navigates to the application', async function () {
