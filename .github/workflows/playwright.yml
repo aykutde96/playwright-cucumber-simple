@@ -40,6 +40,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      
+      - name: Cache npm dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
       - name: Install dependencies
         run: npm i
       - name: Install Playwright Browsers
