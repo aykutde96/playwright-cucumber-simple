@@ -9,13 +9,13 @@
         "publishQuiet": true,
         "dryRun": false,
         "require": [
-            "src/test/steps/*.ts"
+            "src/test/steps/*.ts",
+            "src/test/hooks/*.ts"
         ],
         "requireModule": [
             "ts-node/register"
         ],
         "format": [
-            "progress-bar",
             "html:test-results/cucumber-report.html",
             "json:test-results/cucumber-report.json"
         ]

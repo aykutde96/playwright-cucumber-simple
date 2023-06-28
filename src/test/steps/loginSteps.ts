@@ -1,44 +1,38 @@
 import { Given, When, Then, setDefaultTimeout } from "@cucumber/cucumber"
-import { Browser, chromium, expect, Page } from "@playwright/test"
-
-setDefaultTimeout(60*1000*2);
-let browser: Browser;
-let page: Page;
+import { expect } from "@playwright/test"
+import { pageFixture } from "../hooks/pageFixture";
+setDefaultTimeout(60*1000);
 Given('User navigates to the application', async function () {
-    browser = await chromium.launch({ headless: true });
-    page = await browser.newPage();
-    await page.goto("https://bookcart.azurewebsites.net");
+
+    await pageFixture.page.goto("https://bookcart.azurewebsites.net");
 });
 
 Given('User click on the login link', async function () {
-    await page.locator("//span[text()='Login']").click();
+    await pageFixture.page.locator("//span[text()='Login']").click();
 });
 
 Given('User enter the username as {string}', async function (username) {
-    await page.locator("//input[@formcontrolname='username']").type(username);
+    await pageFixture.page.locator("//input[@formcontrolname='username']").type(username);
 });
 
 
 Given('User enter the password as {string}', async function (password) {
-    await page.locator("//input[@formcontrolname='password']").type(password);
+    await pageFixture.page.locator("//input[@formcontrolname='password']").type(password);
 });
 
 
 When('User click on the login button', async function () {
-    await page.locator("//button[@color='primary']").click();
+    await pageFixture.page.locator("//button[@color='primary']").click();
 });
 
 When('Login should fail', async function () {
-    const alertElement = page.locator("//mat-error[@role='alert']");
+    const alertElement =  pageFixture.page.locator("//mat-error[@role='alert']");
     await expect(alertElement).toHaveText("Username or Password is incorrect.");
-    await page.close();
-    await browser.close();
 });
 
 Then('Login should be success', async function () {
-    const user = page.locator("//button[contains(@class,'mat-focus-indicator mat-menu-trigger')]//span[1]");
+    const user =  pageFixture.page.locator("//button[contains(@class,'mat-focus-indicator mat-menu-trigger')]//span[1]");
     console.log(await user.textContent());
     await expect(user).toContainText("ortoni");
-    await page.close();
-    await browser.close();
+
 });
