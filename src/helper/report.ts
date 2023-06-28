@@ -4,17 +4,17 @@ report.generate({
     jsonDir: "test-results",
     reportPath: "./",
     reportName: "Playwright Automation Report",
-    pageTitle: "BookCart App test report",
+    pageTitle: "playwright report",
     displayDuration: false,
     metadata: {
         browser: {
             name: "chrome",
             version: "112",
         },
-        device: "Koushik - PC",
+        device: "Aykut - PC",
         platform: {
             name: "Windows",
-            version: "10",
+            version: "11",
         },
     },
     customData: {
